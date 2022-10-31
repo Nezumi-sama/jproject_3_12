@@ -1,9 +1,9 @@
 package ru.netology.domain;
 
 public class PosterService {
+    private String[] playbill = new String[0];
 
-
-    public String[] addFilm(String[] playbill, String film) {
+    public void addFilm(String film) {
         String[] playbillNew = new String[playbill.length + 1];
 
         if (playbill.length == 0) {
@@ -15,16 +15,16 @@ public class PosterService {
             playbillNew[playbillNew.length - 1] = film;
         }
         playbill = playbillNew;
+      //  return playbill;
+    }
+
+
+    public String[] findAll() {
         return playbill;
     }
 
 
-    public String[] findAll(String[] playbill) {
-        return playbill;
-    }
-
-
-    public String[] findLast(String[] playbill) {
+    public String[] findLast() {
         int count = 10;
         int number = 0;
         if (playbill.length < 10) {
@@ -40,7 +40,7 @@ public class PosterService {
     }
 
 
-    public String[] findLastN(String[] playbill, int count) {
+    public String[] findLastN(int count) {
         int number = 0;
         if (playbill.length < count) {
             count = playbill.length;
