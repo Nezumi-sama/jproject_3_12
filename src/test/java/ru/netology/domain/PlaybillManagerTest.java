@@ -11,7 +11,8 @@ import static org.mockito.Mockito.*;
 class PlaybillManagerTest {
     //    PlaybillRepository repo = new PlaybillRepository();
     PlaybillRepository repo = Mockito.mock(PlaybillRepository.class);
-    PlaybillManager manager = new PlaybillManager(repo);
+    //  PlaybillManager manager = new PlaybillManager(repo);
+
 
     PosterItem film1 = new PosterItem(1, "Послезавтра", 2004);
     PosterItem film2 = new PosterItem(2, "2012", 2009);
@@ -38,6 +39,8 @@ class PlaybillManagerTest {
 
     @Test
     void addItem() {
+        PlaybillManager manager = new PlaybillManager(repo);
+
         PosterItem[] items = {film1, film2, film3, film4};
         doReturn(items).when(repo).findAll();
 
@@ -51,6 +54,7 @@ class PlaybillManagerTest {
 
     @Test
     void getAllItems() {
+        PlaybillManager manager = new PlaybillManager(repo);
 
         PosterItem[] items = {film1, film2, film3, film4};
         doReturn(items).when(repo).findAll();
@@ -63,7 +67,9 @@ class PlaybillManagerTest {
 
 
     @Test
-    void getLastItemsMoreTen(){
+    void getLastItemsMoreTen() {
+        PlaybillManager manager = new PlaybillManager(repo);
+
         PosterItem[] items = {film1, film2, film3, film4, film5, film6,
                 film7, film8, film9, film10, film11, film12};
         doReturn(items).when(repo).findAll();
@@ -77,7 +83,9 @@ class PlaybillManagerTest {
     }
 
     @Test
-    void getLastItemsLessTen(){
+    void getLastItemsLessTen() {
+        PlaybillManager manager = new PlaybillManager(repo);
+
         PosterItem[] items = {film1, film2, film3, film4, film5};
         doReturn(items).when(repo).findAll();
 
@@ -89,25 +97,30 @@ class PlaybillManagerTest {
     }
 
     @Test
-    void getLastItemsMoreN(){
+    void getLastItemsMoreN() {
+        PlaybillManager manager = new PlaybillManager(repo, 5);
+
         PosterItem[] items = {film1, film2, film3, film4, film5, film6,
                 film7, film8, film9, film10, film11, film12};
         doReturn(items).when(repo).findAll();
 
+
         PosterItem[] expected = {film12, film11, film10, film9, film8};
-        PosterItem[] actual = manager.getLastItems(5);
+        PosterItem[] actual = manager.getLastItems();
 
         assertArrayEquals(expected, actual);
 
     }
 
     @Test
-    void getLastItemsLessN(){
+    void getLastItemsLessN() {
+        PlaybillManager manager = new PlaybillManager(repo, 5);
+
         PosterItem[] items = {film1, film2, film3, film4};
         doReturn(items).when(repo).findAll();
 
         PosterItem[] expected = {film4, film3, film2, film1};
-        PosterItem[] actual = manager.getLastItems(5);
+        PosterItem[] actual = manager.getLastItems();
 
         assertArrayEquals(expected, actual);
 

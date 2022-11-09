@@ -2,9 +2,15 @@ package ru.netology.domain;
 
 public class PlaybillManager {
     private PlaybillRepository repo;
+    private int lastFilm = 10;
 
     public PlaybillManager(PlaybillRepository repo) {
         this.repo = repo;
+    }
+
+    public PlaybillManager(PlaybillRepository repo, int lastFilm) {
+        this.repo = repo;
+        this.lastFilm = lastFilm;
     }
 
     public void addItem(PosterItem item) {
@@ -18,9 +24,9 @@ public class PlaybillManager {
 
     public PosterItem[] getLastItems() {
         PosterItem[] allItems = repo.findAll();
-        int count = 10;
+        int count = this.lastFilm;
         int number = 0;
-        if (allItems.length < 10) {
+        if (allItems.length < count) {
             count = allItems.length;
         }
         PosterItem[] lastItems = new PosterItem[count];
@@ -33,6 +39,7 @@ public class PlaybillManager {
         return lastItems;
     }
 
+    /*
     public PosterItem[] getLastItems(int count) {
         PosterItem[] allItems = repo.findAll();
         int number = 0;
@@ -48,5 +55,5 @@ public class PlaybillManager {
 
         return lastItems;
     }
-
+*/
 }
