@@ -105,7 +105,7 @@ class PosterServiceTest {
 
     @Test
     void shouldFindLastMoreN() {
-        PosterService service = new PosterService();
+        PosterService service = new PosterService(5);
 
         service.addFilm(film1);
         service.addFilm(film2);
@@ -116,7 +116,7 @@ class PosterServiceTest {
         service.addFilm(film7);
         service.addFilm(film8);
 
-        String[] actual = service.findLastN(5);
+        String[] actual = service.findLast();
         String[] expected = {"film8", "film7", "film6", "film5", "film4"};
 
         assertArrayEquals(expected, actual);
@@ -125,13 +125,13 @@ class PosterServiceTest {
 
     @Test
     void shouldFindLastLessN() {
-        PosterService service = new PosterService();
+        PosterService service = new PosterService(5);
 
         service.addFilm(film1);
         service.addFilm(film2);
         service.addFilm(film3);
 
-        String[] actual = service.findLastN(5);
+        String[] actual = service.findLast();
         String[] expected = {"film3", "film2", "film1"};
 
         assertArrayEquals(expected, actual);

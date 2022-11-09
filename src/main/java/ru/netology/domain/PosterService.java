@@ -2,6 +2,16 @@ package ru.netology.domain;
 
 public class PosterService {
     private String[] playbill = new String[0];
+    private int lastFilm = 10;
+
+    public PosterService() {
+
+    }
+
+    public PosterService(int lastFilm) {
+        this.lastFilm = lastFilm;
+
+    }
 
     public void addFilm(String film) {
         String[] playbillNew = new String[playbill.length + 1];
@@ -15,7 +25,7 @@ public class PosterService {
             playbillNew[playbillNew.length - 1] = film;
         }
         playbill = playbillNew;
-      //  return playbill;
+        //  return playbill;
     }
 
 
@@ -25,22 +35,7 @@ public class PosterService {
 
 
     public String[] findLast() {
-        int count = 10;
-        int number = 0;
-        if (playbill.length < 10) {
-            count = playbill.length;
-        }
-        String[] playbillLast = new String[count];
-        for (int i = playbill.length - 1; i > playbill.length - count - 1; i--) {
-            playbillLast[number] = playbill[i];
-            number++;
-        }
-
-        return playbillLast;
-    }
-
-
-    public String[] findLastN(int count) {
+        int count = this.lastFilm;
         int number = 0;
         if (playbill.length < count) {
             count = playbill.length;
@@ -54,4 +49,20 @@ public class PosterService {
         return playbillLast;
     }
 
+/*
+    public String[] findLastN(int count) {
+        int number = 0;
+
+        if (playbill.length < count) {
+            count = playbill.length;
+        }
+        String[] playbillLast = new String[count];
+        for (int i = playbill.length - 1; i > playbill.length - count - 1; i--) {
+            playbillLast[number] = playbill[i];
+            number++;
+        }
+
+        return playbillLast;
+    }
+*/
 }
